@@ -109,7 +109,7 @@ jobs:
         run: |
           # Note that `zip` will only emit warnings when a file or directory
           # doesn't exist, it will not fail.
-          zip                                    \
+          zip -r -0                                    \
             `# Options`                          \
             --recurse-paths                      \
             `# The name of the output file`      \
