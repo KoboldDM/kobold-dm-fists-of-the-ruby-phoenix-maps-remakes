@@ -101,24 +101,6 @@ jobs:
           MANIFEST: ${{ env.latest_manifest_url }}
           DOWNLOAD: ${{ env.release_module_url }}
 
-      - name: Inspect the two Temple files on runner
-        run: |
-          set -e
-          echo "=== sizes ==="
-          ls -lah "maps/Temple of Irori Foreground.webp" "maps/Temple of Irori background.webp"
-      
-          echo "=== file type ==="
-          file "maps/Temple of Irori Foreground.webp" "maps/Temple of Irori background.webp"
-      
-          echo "=== first 200 bytes (should NOT be readable text) ==="
-          head -c 200 "maps/Temple of Irori Foreground.webp" | cat
-          echo
-          head -c 200 "maps/Temple of Irori background.webp" | cat
-          echo
-      
-          echo "=== sha256 ==="
-          sha256sum "maps/Temple of Irori Foreground.webp" "maps/Temple of Irori background.webp"
-
       # Create a "module.zip" archive containing all the module's required files.
       # If you have other directories or files that will need to be added to
       # your packaged module, add them here.
@@ -126,7 +108,7 @@ jobs:
         run: |
           # Note that `zip` will only emit warnings when a file or directory
           # doesn't exist, it will not fail.
-          zip -r -0                                    \
+          zip                               \
             `# Options`                          \
             --recurse-paths                      \
             `# The name of the output file`      \
